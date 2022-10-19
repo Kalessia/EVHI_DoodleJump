@@ -31,8 +31,12 @@ public class Jump : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        rb.velocity = Vector2.zero;
-        rb.AddForce(jump * jump_force);
-        Debug.Log("rebond");
+        if (rb.velocity.y < 0)
+        {
+            Debug.Log("Avant rebond");
+            rb.velocity = Vector2.zero;
+            rb.AddForce(jump * jump_force);
+            Debug.Log("rebond");
+        }
     }
 }
