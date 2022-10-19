@@ -5,6 +5,7 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
     public float jump_force;
+    public float spring_force;
     private Rigidbody2D rb;
     private Vector2 jump;
 
@@ -23,7 +24,7 @@ public class Jump : MonoBehaviour
         {
             rb.velocity = Vector2.zero;
             rb.AddForce(jump);
-            Debug.Log("saut");
+            //Debug.Log("saut");
         }
     }
 
@@ -31,12 +32,23 @@ public class Jump : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (rb.velocity.y < 0)
+        if ((rb.velocity.y < 0) && (!(collision.gameObject.CompareTag("BlackHole"))))
         {
-            Debug.Log("Avant rebond");
+            // Spring
+            if (collision.gameObject.CompareTag("Spring"))
+            {
+                rb.velocity = Vector2.zero;
+                rb.AddForce(jump * jump_force * spring_force);
+                //Debug.Log("Spring");
+                return;
+            }
+
+            // Normal jump behavior
+            //Debug.Log("Avant rebond");
             rb.velocity = Vector2.zero;
             rb.AddForce(jump * jump_force);
-            Debug.Log("rebond");
+            //Debug.Log("rebond");
         }
     }
+
 }

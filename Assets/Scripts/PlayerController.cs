@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
         {
             transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
         }
-        Debug.Log(rb.velocity);
     }
 
 
@@ -53,4 +52,6 @@ public class PlayerController : MonoBehaviour
         }
         rb.AddForce(mouvement * speed);*/
     }
+
+
 }
