@@ -147,7 +147,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jump_force: 400
-  spring_force: 0
+  spring_force: 2
 --- !u!114 &-4055489620521318940
 MonoBehaviour:
   m_ObjectHideFlags: 0

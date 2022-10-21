@@ -18,7 +18,6 @@ public class PlatformMove : MonoBehaviour
         float cam_width = cam.orthographicSize * cam.aspect;
         targetLeft = new Vector3(cam.transform.position.x - cam_width + offset, transform.position.y, transform.position.z);
         targetRight = new Vector3(cam.transform.position.x + cam_width - offset, transform.position.y, transform.position.z);
-        print(transform.position);
     }
 
     // Update is called once per frame
