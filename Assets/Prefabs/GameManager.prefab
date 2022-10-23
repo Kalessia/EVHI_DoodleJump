@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3126601169841091187}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -51,3 +51,11 @@ MonoBehaviour:
   gameOverScreen: {fileID: 0}
   endButtonMenu: {fileID: 0}
   endButtonPlay: {fileID: 0}
+  greenplatPrefab: {fileID: 0}
+  blueplatPrefab: {fileID: 0}
+  maxSpeedBluePlatform: 5
+  minSpeedBluePlatform: 0.1
+  brownplatPrefab: {fileID: 0}
+  springPrefab: {fileID: 0}
+  ennemy1Prefab: {fileID: 0}
+  blackHolePrefab: {fileID: 0}
