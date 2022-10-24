@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 1;
     private Vector2 mouvement;
     private Rigidbody2D rb;
+    public SpriteRenderer spriteRenderer;
     //public float velocity_max;
 
     // Start is called before the first frame update
@@ -21,10 +22,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0,0);
+            // spriteRenderer.flipX = false; PAS PROPRE
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
+            // spriteRenderer.flipX = true; PAS PROPRE
         }
     }
 
