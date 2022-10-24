@@ -15,14 +15,17 @@ public class PlatformMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        float cam_width = cam.orthographicSize * cam.aspect;
-        targetLeft = new Vector3(cam.transform.position.x - cam_width + offset, transform.position.y, transform.position.z);
-        targetRight = new Vector3(cam.transform.position.x + cam_width - offset, transform.position.y, transform.position.z);
+        setUpCam();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(cam == null)
+        {
+            setUpCam();
+        }
+        
         if (leftTarget)
         {
             if(transform.position.x - targetLeft.x < 0.01)
@@ -39,5 +42,12 @@ public class PlatformMove : MonoBehaviour
             }
             transform.position = Vector3.MoveTowards(transform.position, targetRight, speed * Time.deltaTime);
         }
+    }
+
+    void setUpCam()
+    {
+        float cam_width = cam.orthographicSize * cam.aspect;
+        targetLeft = new Vector3(cam.transform.position.x - cam_width + offset, transform.position.y, transform.position.z);
+        targetRight = new Vector3(cam.transform.position.x + cam_width - offset, transform.position.y, transform.position.z);
     }
 }
