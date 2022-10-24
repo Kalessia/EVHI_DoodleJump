@@ -22,12 +22,12 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0,0);
-            // spriteRenderer.flipX = false; PAS PROPRE
+            spriteRenderer.flipX = false;
         }
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
-            // spriteRenderer.flipX = true; PAS PROPRE
+            spriteRenderer.flipX = true;
         }
     }
 

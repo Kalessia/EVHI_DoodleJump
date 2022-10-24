@@ -9,6 +9,7 @@ public class Jump : MonoBehaviour
     private Rigidbody2D rb;
     private Vector2 jump;
 
+    public Animator animator;
 
     // Start is called before the first frame update
     void Start()
@@ -33,6 +34,8 @@ public class Jump : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
+
         if ((rb.velocity.y < 0) && (!(collision.gameObject.CompareTag("BlackHole"))))
         {
             // Spring
@@ -41,6 +44,7 @@ public class Jump : MonoBehaviour
                 rb.velocity = Vector2.zero;
                 rb.AddForce(jump * jump_force * spring_force);
                 //Debug.Log("Spring");
+                animator.SetTrigger("JumpCondition");
                 return;
             }
 
@@ -48,6 +52,7 @@ public class Jump : MonoBehaviour
             //Debug.Log("Avant rebond");
             rb.velocity = Vector2.zero;
             rb.AddForce(jump * jump_force);
+            animator.SetTrigger("JumpCondition");
             //Debug.Log("rebond");
         }
     }
