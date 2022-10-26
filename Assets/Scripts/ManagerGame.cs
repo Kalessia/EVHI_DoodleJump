@@ -140,6 +140,7 @@ public class ManagerGame: MonoBehaviour
                     platformColor = blueplatPrefab;
                     speedBlue = Random.Range(minSpeedBluePlatform, maxSpeedBluePlatform - (maxSpeedBluePlatform - minSpeedBluePlatform -1) * (1 - difficulty));
                 }
+                //GameObject lastemp = lastPlatform;
                 lastPlatform = Instantiate(platformColor, new Vector3(Random.Range(-1.0f, 1.0f) * (cam_width - 0.6f), player.transform.position.y + Random.Range(minBoundaries + 3 * difficulty, maxBoundaries), 10), Quaternion.identity);
                 if(speedBlue > -1.0f)
                 {
@@ -155,13 +156,13 @@ public class ManagerGame: MonoBehaviour
                     }
                 }
                 
-                if (Random.Range(difficulty * 0.5f, 1.0f) > 0.95f)
+                if (Random.Range(difficulty * 0.5f, 1.0f) > 0.90f)
                 {
                     float seuilFakePlat = 0.8f;
                     float seuilEnemy = 0.5f;
                     float seuilBlackHole = 0.1f;
                     float tirage = Random.Range(0.0f, seuilFakePlat + seuilEnemy + seuilBlackHole);
-                    if (tirage < seuilBlackHole)
+                    if ((tirage < seuilBlackHole) && (player.transform.position.y > 100))
                     {
                         if (lastPlatform.transform.position.x > 0)
                         {
@@ -172,15 +173,27 @@ public class ManagerGame: MonoBehaviour
                             Instantiate(blackHolePrefab, new Vector3(Random.Range(0.0f, 1.0f) * (cam_width - 0.6f), player.transform.position.y + Random.Range(minBoundaries + 3 * difficulty, maxBoundaries), 5), Quaternion.identity);
                         }
                     }
-                    else if(tirage < seuilEnemy + seuilBlackHole) 
+                    else if((tirage < seuilEnemy + seuilBlackHole) && (player.transform.position.y > 50)) 
                     {
-                        Instantiate(enemy1Prefab, new Vector3(Random.Range(-1.0f, 1.0f) * (cam_width - 0.6f), player.transform.position.y + Random.Range(minBoundaries + 3 * difficulty, maxBoundaries), 9), Quaternion.identity);
+                        if (lastPlatform.transform.position.x > 0)
+                        {
+                            Instantiate(enemy1Prefab, new Vector3(Random.Range(-1.0f, 0.0f) * (cam_width - 0.6f), player.transform.position.y + Random.Range(minBoundaries + 3 * difficulty, maxBoundaries), 7), Quaternion.identity);
+                        }
+                        else
+                        {
+                            Instantiate(enemy1Prefab, new Vector3(Random.Range(0.0f, 1.0f) * (cam_width - 0.6f), player.transform.position.y + Random.Range(minBoundaries + 3 * difficulty, maxBoundaries), 7), Quaternion.identity);
+                        }
                     }
                     else
                     {
                         Instantiate(brownplatPrefab, new Vector3(Random.Range(-1.0f, 1.0f) * (cam_width - 0.6f), player.transform.position.y + Random.Range(minBoundaries + 3 * difficulty, maxBoundaries), 10), Quaternion.identity);
                     }
                 }
+
+                /*if(lastemp.transform.position.y > lastPlatform.transform.position.y)
+                {
+                    lastPlatform = lastemp;
+                }*/
             }
         }
     }

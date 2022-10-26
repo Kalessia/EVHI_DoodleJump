@@ -47,7 +47,7 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
             spriteRenderer.flipX = true;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             animator.SetTrigger("PlayerShot");
             PlayerNose.SetActive(true);
