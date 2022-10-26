@@ -9,16 +9,34 @@ public class PlayerController : MonoBehaviour
     private Vector2 mouvement;
     private Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
-    //public float velocity_max;
+    public GameObject PlayerNose;
+    private float cptTime;
+    public int factor = 150;
+    public Animator animator;
+    public GameObject BallPrefab;
+    public float shootForce;
+    //public float velocity_max;  
+
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        PlayerNose.SetActive(false);
+        cptTime = 0;
     }
 
     private void Update()
     {
+        if (cptTime <= 0)
+        {
+            PlayerNose.SetActive(false);
+        } else
+        {
+            cptTime = cptTime - Time.deltaTime;
+        }
+        
         if (Input.GetKey(KeyCode.RightArrow))
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0,0);
@@ -28,6 +46,14 @@ public class PlayerController : MonoBehaviour
         {
             transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
             spriteRenderer.flipX = true;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            animator.SetTrigger("PlayerShot");
+            PlayerNose.SetActive(true);
+            cptTime = factor * Time.deltaTime;
+            GameObject ball = Instantiate(BallPrefab, new Vector3(transform.position.x, transform.position.y + 1.0f, 3), Quaternion.identity);
+            ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, shootForce); // AddForce(new Vector2(0, shootForce));
         }
     }
 

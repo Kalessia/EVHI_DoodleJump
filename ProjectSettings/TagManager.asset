@@ -6,6 +6,12 @@ TagManager:
   tags:
   - Spring
   - BlackHole
+  - Platform
+  - GameManager
+  - PlayerSecondCollider
+  - Monster
+  - FakePlatform
+  - Ball
   layers:
   - Default
   - TransparentFX

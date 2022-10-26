@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BlackHoleAspiration : MonoBehaviour
 {
-    private GameObject player;
     private float smooth = 2.0f;    // BlackHole scale resize smooth effect
 
 
@@ -23,13 +22,22 @@ public class BlackHoleAspiration : MonoBehaviour
     // BlackHole
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        collision.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
-        collision.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        Vector3 newDest = this.transform.position; // Final destination
-        collision.transform.position = Vector3.Lerp(collision.transform.position, newDest, Time.deltaTime * smooth);
-        Vector3 newScale = new Vector3(5,5,5); // Final dimensions
-        collision.transform.localScale = Vector3.Lerp(collision.transform.localScale, newScale, Time.deltaTime * smooth);
-        Destroy(collision.gameObject, 0.5f);
-        Debug.Log("BlackHole");
-    }
+
+        if (collision.gameObject.CompareTag("PlayerSecondCollider"))
+        {
+            GameObject player = collision.GetComponent<FollowPlayer>().Player;
+            player.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
+            player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+            Vector3 newDest = this.transform.position; // Final destination
+            player.transform.position = Vector3.Lerp(player.transform.position, newDest, Time.deltaTime * smooth);
+            Vector3 newScale = new Vector3(5, 5, 5); // Final dimensions
+            player.transform.localScale = Vector3.Lerp(player.transform.localScale, newScale, Time.deltaTime * smooth);
+            Destroy(player.gameObject, 0.5f);
+            Destroy(collision.gameObject);
+            //Debug.Log("BlackHole");
+            GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
+            ManagerGame mg = gm.GetComponent<ManagerGame>();
+            mg.SetLose();
+        }
+    } 
 }

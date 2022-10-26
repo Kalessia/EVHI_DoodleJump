@@ -36,24 +36,44 @@ public class Jump : MonoBehaviour
     {
         
 
-        if ((rb.velocity.y < 0) && (!(collision.gameObject.CompareTag("BlackHole"))))
+        if ((rb.velocity.y < 0) && (!(collision.gameObject.CompareTag("BlackHole")))
+            && (collision.gameObject.CompareTag("PlayerSecondCollider") == false))
         {
+            if (collision.gameObject.CompareTag("FakePlatform"))
+            {
+                collision.gameObject.GetComponent<Animator>().SetTrigger("PlatformBreak");
+                collision.gameObject.GetComponent<FakePlatformBreak>().SetBroken();  
+                return;
+            }
             // Spring
             if (collision.gameObject.CompareTag("Spring"))
             {
                 rb.velocity = Vector2.zero;
                 rb.AddForce(jump * jump_force * spring_force);
                 //Debug.Log("Spring");
-                animator.SetTrigger("JumpCondition");
+                if (animator != null)
+                {
+                    animator.SetTrigger("JumpCondition");
+                    collision.gameObject.GetComponent<Animator>().SetTrigger("SpringBounce");
+                }
                 return;
+            }
+            if (collision.gameObject.CompareTag("Monster"))
+            {
+                Destroy(collision.gameObject);
+                //Debug.Log("Monster");
             }
 
             // Normal jump behavior
             //Debug.Log("Avant rebond");
             rb.velocity = Vector2.zero;
             rb.AddForce(jump * jump_force);
-            animator.SetTrigger("JumpCondition");
+            if (animator != null)
+            {
+                animator.SetTrigger("JumpCondition");
+            }
             //Debug.Log("rebond");
+
         }
     }
 }
