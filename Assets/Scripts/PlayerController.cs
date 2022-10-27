@@ -6,11 +6,11 @@ public class PlayerController : MonoBehaviour
 {
 
     public float speed = 1;
-    private Vector2 mouvement;
+    //private Vector2 mouvement;
     private Rigidbody2D rb;
     public SpriteRenderer spriteRenderer;
     public GameObject PlayerNose;
-    private float cptTime;
+    //private float cptTime;
     public int factor = 150;
     public Animator animator;
     public GameObject BallPrefab;
@@ -23,19 +23,19 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        PlayerNose.SetActive(false);
-        cptTime = 0;
+        //PlayerNose.SetActive(false);
+        //cptTime = 0;
     }
 
     private void Update()
     {
-        if (cptTime <= 0)
+        /*if (cptTime <= 0)
         {
             PlayerNose.SetActive(false);
         } else
         {
             cptTime = cptTime - Time.deltaTime;
-        }
+        }*/
         
         if (Input.GetKey(KeyCode.RightArrow))
         {
@@ -50,8 +50,9 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             animator.SetTrigger("PlayerShot");
-            PlayerNose.SetActive(true);
-            cptTime = factor * Time.deltaTime;
+            PlayerNose.GetComponent<Animator>().SetTrigger("NoseShoot");
+            //PlayerNose.SetActive(true);
+            //cptTime = factor * Time.deltaTime;
             GameObject ball = Instantiate(BallPrefab, new Vector3(transform.position.x, transform.position.y + 1.0f, 3), Quaternion.identity);
             ball.GetComponent<Rigidbody2D>().velocity = new Vector2(0, shootForce); // AddForce(new Vector2(0, shootForce));
         }
