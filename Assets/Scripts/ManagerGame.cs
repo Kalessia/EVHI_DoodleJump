@@ -26,6 +26,8 @@ public class ManagerGame: MonoBehaviour
     public GameObject springPrefab;
     public GameObject enemy1Prefab;
     public GameObject blackHolePrefab;
+    public GameObject helicoPrefab;
+    public GameObject jetpackPrefab;
 
     private float difficulty;
     private GameObject lastPlatform;
@@ -149,19 +151,42 @@ public class ManagerGame: MonoBehaviour
                     pm.speed = speedBlue;
                     pm.cam = cam;
                 }
-                if (springPrefab != null) {
+                bool bonusPossible = true;
+                if ((springPrefab != null) && bonusPossible) {
                     if (Random.Range(0.0f, 1.0f) <= 0.1f)
                     {
                         GameObject newSpring = Instantiate(springPrefab, lastPlatform.transform, true);
                         newSpring.transform.position = lastPlatform.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), 0.4f, 0);
+                        bonusPossible = false;
                     }
                 }
-                
+
+                if((helicoPrefab != null) && bonusPossible)
+                {
+                    if (Random.Range(0.0f, 1.0f) <= 0.05f)
+                    {
+                        GameObject newHelico = Instantiate(helicoPrefab, lastPlatform.transform, true);
+                        newHelico.GetComponent<FollowPlayer>().Player = player;
+                        newHelico.transform.position = lastPlatform.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), 0.4f, 0);
+                        bonusPossible = false;
+                    }
+                }
+                if ((jetpackPrefab != null) && bonusPossible)
+                {
+                    if (Random.Range(0.0f, 1.0f) <= 0.05)
+                    {
+                        GameObject newJet = Instantiate(jetpackPrefab, lastPlatform.transform, true);
+                        newJet.GetComponent<FollowPlayer>().Player = player;
+                        newJet.transform.position = lastPlatform.transform.position + new Vector3(Random.Range(-0.3f, 0.3f), 0.2f, 0);
+                        bonusPossible = false;
+                    }
+                }
+
                 if (Random.Range(difficulty * 0.5f, 1.0f) > 0.90f)
                 {
-                    float seuilFakePlat = 0.8f;
-                    float seuilEnemy = 0.5f;
-                    float seuilBlackHole = 0.1f;
+                    float seuilFakePlat = 0.9f;
+                    float seuilEnemy = 0.4f;
+                    float seuilBlackHole = 0.3f;
                     float tirage = Random.Range(0.0f, seuilFakePlat + seuilEnemy + seuilBlackHole);
                     if ((tirage < seuilBlackHole) && (player.transform.position.y > 100))
                     {
@@ -337,6 +362,24 @@ public class ManagerGame: MonoBehaviour
         foreach (GameObject i in platforms)
         {
             if (i.transform.position.y > cam.transform.position.y + cam.orthographicSize + offset)
+            {
+                Destroy(i);
+            }
+        }
+
+        platforms = GameObject.FindGameObjectsWithTag("HelicoHat");
+        foreach (GameObject i in platforms)
+        {
+            if (i.transform.position.y < cam.transform.position.y - cam.orthographicSize - offset)
+            {
+                Destroy(i);
+            }
+        }
+
+        platforms = GameObject.FindGameObjectsWithTag("JetPack");
+        foreach (GameObject i in platforms)
+        {
+            if (i.transform.position.y < cam.transform.position.y - cam.orthographicSize - offset)
             {
                 Destroy(i);
             }
