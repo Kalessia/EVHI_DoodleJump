@@ -163,7 +163,7 @@ public class ManagerGame: MonoBehaviour
 
                 if((helicoPrefab != null) && bonusPossible)
                 {
-                    if (Random.Range(0.0f, 1.0f) <= 0.05f)
+                    if (Random.Range(0.0f, 1.0f) <= 0.02f)
                     {
                         GameObject newHelico = Instantiate(helicoPrefab, lastPlatform.transform, true);
                         newHelico.GetComponent<FollowPlayer>().Player = player;
@@ -173,7 +173,7 @@ public class ManagerGame: MonoBehaviour
                 }
                 if ((jetpackPrefab != null) && bonusPossible)
                 {
-                    if (Random.Range(0.0f, 1.0f) <= 0.05)
+                    if (Random.Range(0.0f, 1.0f) <= 0.02f)
                     {
                         GameObject newJet = Instantiate(jetpackPrefab, lastPlatform.transform, true);
                         newJet.GetComponent<FollowPlayer>().Player = player;

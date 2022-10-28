@@ -15,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public Animator animator;
     public GameObject BallPrefab;
     public float shootForce;
+    public bool haveBonus = false;
     //public float velocity_max;  
 
     public AudioSource audioSource;
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
             transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
             spriteRenderer.flipX = true;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && (haveBonus == false))
         {
             audioSource.PlayOneShot(soundFire);
             animator.SetTrigger("PlayerShot");
