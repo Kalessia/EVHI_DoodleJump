@@ -45,6 +45,14 @@ public class Jump : MonoBehaviour
         if ((rb.velocity.y < 0) && (!(collision.gameObject.CompareTag("BlackHole")))
             && (collision.gameObject.CompareTag("PlayerSecondCollider") == false))
         {
+            if (collision.gameObject.CompareTag("HelicoHat"))
+            {
+                //audioSource.PlayOneShot();
+                collision.gameObject.GetComponent<Animator>().SetTrigger("HelicoHatCondition");
+                collision.gameObject.GetComponent<HelicoHat>().SetTaken();
+                return;
+            }
+
             if (collision.gameObject.CompareTag("FakePlatform"))
             {
                 audioSource.PlayOneShot(soundJumpFakePlatform);

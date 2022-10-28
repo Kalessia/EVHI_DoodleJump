@@ -12,6 +12,8 @@ TagManager:
   - Monster
   - FakePlatform
   - Ball
+  - JetPack
+  - HelicoHat
   layers:
   - Default
   - TransparentFX
