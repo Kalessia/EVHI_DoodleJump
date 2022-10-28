@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class JetPack : MonoBehaviour
@@ -15,7 +13,7 @@ public class JetPack : MonoBehaviour
 
     public Animator animator;
 
-    // Start is called before the first frame update
+
     void Start()
     {
         startPosition = transform.position.y;
@@ -39,7 +37,6 @@ public class JetPack : MonoBehaviour
                 {
                     Debug.Log(player.transform.position.y);
                     Debug.Log(startPosition);
-                    //player.GetComponent<Rigidbody2D>().mass = 1.0f;
                     player.GetComponent<Jump>().enabled = true;
                     player.GetComponent<Rigidbody2D>().simulated = true;
                     player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 200));
@@ -60,8 +57,6 @@ public class JetPack : MonoBehaviour
         {
             if (taken == false)
             {
-                Debug.Log("taken JetPack");
-                //GameObject player = collision.GetComponent<FollowPlayer>().Player;
                 player = GetComponent<FollowPlayer>().Player;
 
                 if (player.GetComponent<PlayerController>().haveBonus == false)
@@ -69,8 +64,6 @@ public class JetPack : MonoBehaviour
                     GetComponent<FollowPlayer>().enabled = true;
                     GetComponent<Animator>().SetTrigger("JetPackCondition");
                     player.GetComponent<PlayerController>().haveBonus = true;
-                    //player.GetComponent<Rigidbody2D>().mass = 0.0f;
-                    //player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     player.GetComponent<Rigidbody2D>().simulated = false;
                     player.GetComponent<Jump>().enabled = false;
                     player.GetComponent<BoxCollider2D>().enabled = false;
@@ -78,13 +71,6 @@ public class JetPack : MonoBehaviour
                     startPosition = transform.position.y;
                     transform.parent.gameObject.transform.DetachChildren();
                     SetTaken();
-                    //player.GetComponent<BoxCollider2D>().enabled = false;
-                    //player.transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime, transform.position.z);
-
-                    //if (player.transform.position.y > startPosition + height)
-                    //{
-                    //Destroy(this.gameObject);
-                    //}
                 }
             }
         }

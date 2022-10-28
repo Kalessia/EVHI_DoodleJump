@@ -10,11 +10,6 @@ public class MainMenu : MonoBehaviour
         SceneManager.UnloadSceneAsync("EntryScene");
     }
 
-    public void Options()
-    {
-
-    }
-
     public void Quit()
     {
         Application.Quit();

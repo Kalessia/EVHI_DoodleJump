@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class UFObjectMove : MonoBehaviour
@@ -8,7 +6,6 @@ public class UFObjectMove : MonoBehaviour
     float y;
     float z;
 
-    // Update is called once per frame
     void Update()
     {
         x = Mathf.Abs(Mathf.Cos(Time.time) * 1.5f) + 0.7f;

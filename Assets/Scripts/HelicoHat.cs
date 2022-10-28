@@ -38,7 +38,6 @@ public class HelicoHat : MonoBehaviour
                 {
                     Debug.Log(player.transform.position.y);
                     Debug.Log(startPosition);
-                    //player.GetComponent<Rigidbody2D>().mass = 1.0f;
                     player.GetComponent<Jump>().enabled = true;
                     player.GetComponent<Rigidbody2D>().simulated = true;
                     player.GetComponent<Rigidbody2D>().AddForce(new Vector2(0, 50));
@@ -58,7 +57,6 @@ public class HelicoHat : MonoBehaviour
             if (taken == false)
             {
                 Debug.Log("taken HelicoHat");
-                //GameObject player = collision.GetComponent<FollowPlayer>().Player;
                 player = GetComponent<FollowPlayer>().Player;
                 
                 if (player.GetComponent<PlayerController>().haveBonus == false)
@@ -67,20 +65,11 @@ public class HelicoHat : MonoBehaviour
                 
                     GetComponent<Animator>().SetTrigger("HelicoHatCondition");
                     player.GetComponent<PlayerController>().haveBonus = true;
-                    //player.GetComponent<Rigidbody2D>().mass = 0.0f;
-                    //player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                     player.GetComponent<Rigidbody2D>().simulated = false;
                     player.GetComponent<Jump>().enabled = false;
                     startPosition = transform.position.y;
                     transform.parent.gameObject.transform.DetachChildren();
                     SetTaken();
-                    //player.GetComponent<BoxCollider2D>().enabled = false;
-                    //player.transform.position = new Vector3(transform.position.x, transform.position.y + speed * Time.deltaTime, transform.position.z);
-
-                    //if (player.transform.position.y > startPosition + height)
-                    //{
-                    //Destroy(this.gameObject);
-                    //}
                 }
             }
         }

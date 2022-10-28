@@ -8,9 +8,7 @@ public class Jump : MonoBehaviour
     public float spring_force;
     private Rigidbody2D rb;
     private Vector2 jump;
-
     public Animator animator;
-
     public AudioSource audioSource;
     public AudioClip soundJumpSimple;
     public AudioClip soundJumpSpring;

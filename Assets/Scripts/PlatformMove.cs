@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlatformMove : MonoBehaviour
 {
-
     public Camera cam;
     public float speed = 1;
     public float offset = 0;
@@ -12,13 +11,11 @@ public class PlatformMove : MonoBehaviour
     private Vector3 targetRight;
     private bool leftTarget = true;
 
-    // Start is called before the first frame update
     void Start()
     {
         setUpCam();
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(cam == null)

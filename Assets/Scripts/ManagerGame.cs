@@ -215,11 +215,6 @@ public class ManagerGame: MonoBehaviour
                         Instantiate(brownplatPrefab, new Vector3(Random.Range(-1.0f, 1.0f) * (cam_width - 0.6f), player.transform.position.y + Random.Range(minBoundaries + 3 * difficulty, maxBoundaries), 10), Quaternion.identity);
                     }
                 }
-
-                /*if(lastemp.transform.position.y > lastPlatform.transform.position.y)
-                {
-                    lastPlatform = lastemp;
-                }*/
             }
         }
     }
