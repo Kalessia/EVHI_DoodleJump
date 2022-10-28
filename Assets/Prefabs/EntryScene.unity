@@ -1356,11 +1356,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8449503545528796836, guid: 34f46933e732cba439eae36ed6d4ec6e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.07
+      value: -2.04
       objectReference: {fileID: 0}
     - target: {fileID: 8449503545528796836, guid: 34f46933e732cba439eae36ed6d4ec6e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.24
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 8449503545528796836, guid: 34f46933e732cba439eae36ed6d4ec6e, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1819,6 +1819,30 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1556314718}
   m_CullTransparentMesh: 1
+--- !u!1 &1583957811 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8449503545528796833, guid: 34f46933e732cba439eae36ed6d4ec6e, type: 3}
+  m_PrefabInstance: {fileID: 1171648095}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1583957818
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1583957811}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: e9c0629210c53dc478fcd63bd8ee2719, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1918997606
 GameObject:
   m_ObjectHideFlags: 0
@@ -1952,6 +1976,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6492366121771669082, guid: 61c1544775850274aa97a209a9122be1, type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492366121771669082, guid: 61c1544775850274aa97a209a9122be1, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6492366121771669082, guid: 61c1544775850274aa97a209a9122be1, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 06c01b2c4fa7a394e9a4158373aa3962, type: 3}
     - target: {fileID: 6492366121771669083, guid: 61c1544775850274aa97a209a9122be1, type: 3}
       propertyPath: m_Name
       value: AudioManager

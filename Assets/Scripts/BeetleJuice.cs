@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BeetleJuice : MonoBehaviour
 {
+
+    public AudioSource audioSource;
+    public AudioClip soundMonster;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +25,8 @@ public class BeetleJuice : MonoBehaviour
         Debug.Log(collision.gameObject.tag);
         if (collision.gameObject.CompareTag("PlayerSecondCollider"))
         {
+            audioSource.PlayOneShot(soundMonster);
+
             GameObject player = collision.GetComponent<FollowPlayer>().Player;
             player.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(collision.gameObject);

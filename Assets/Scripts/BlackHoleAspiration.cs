@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class BlackHoleAspiration : MonoBehaviour
 {
+    public AudioSource audioSource;
+    public AudioClip soundBlackHole;
+    public GameObject audioManager;
+
     private float smooth = 2.0f;    // BlackHole scale resize smooth effect
 
 
@@ -23,8 +27,11 @@ public class BlackHoleAspiration : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.CompareTag("PlayerSecondCollider"))
+        if (collision.gameObject.CompareTag("PlayerSecondCollider") || collision.gameObject.CompareTag("Player"))
         {
+            audioSource.PlayOneShot(soundBlackHole);
+            audioManager.GetComponent<AudioSource>().enabled = false;
+
             GameObject player = collision.GetComponent<FollowPlayer>().Player;
             player.GetComponent<Rigidbody2D>().gravityScale = 0.0f;
             player.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

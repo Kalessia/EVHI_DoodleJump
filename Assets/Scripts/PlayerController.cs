@@ -17,6 +17,9 @@ public class PlayerController : MonoBehaviour
     public float shootForce;
     //public float velocity_max;  
 
+    public AudioSource audioSource;
+    public AudioClip soundFire;
+    
 
 
     // Start is called before the first frame update
@@ -49,6 +52,7 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
+            audioSource.PlayOneShot(soundFire);
             animator.SetTrigger("PlayerShot");
             PlayerNose.GetComponent<Animator>().SetTrigger("NoseShoot");
             //PlayerNose.SetActive(true);

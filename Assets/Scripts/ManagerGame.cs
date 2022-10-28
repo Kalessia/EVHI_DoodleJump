@@ -43,6 +43,9 @@ public class ManagerGame: MonoBehaviour
     public GameObject textScoreEndObj;
     public TextMeshProUGUI textScoreEnd;
 
+    public GameObject audioManager;
+    public AudioSource audioSource;
+    public AudioClip soundEndGame;
 
     // Start is called before the first frame update
     void Start()
@@ -251,6 +254,8 @@ public class ManagerGame: MonoBehaviour
 
     void endGame()
     {
+        audioManager.GetComponent<AudioSource>().enabled = false;
+
         if (cam.transform.position.y - targetEnd.y > 0.01)
         {
             cam.transform.position = Vector3.MoveTowards(cam.transform.position, targetEnd, speedEnd * Time.deltaTime);
@@ -274,6 +279,7 @@ public class ManagerGame: MonoBehaviour
             {
                 if (cam.transform.position.y - cam.orthographicSize - offset > player.transform.position.y)
                 {
+                    AudioSource.PlayClipAtPoint(soundEndGame, transform.position);
                     Destroy(player);
                 }
             }
@@ -351,4 +357,5 @@ public class ManagerGame: MonoBehaviour
         SceneManager.LoadScene("EntryScene");
         SceneManager.UnloadSceneAsync("PlayScene");
     }
+
 }

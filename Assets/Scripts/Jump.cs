@@ -11,6 +11,12 @@ public class Jump : MonoBehaviour
 
     public Animator animator;
 
+    public AudioSource audioSource;
+    public AudioClip soundJumpSimple;
+    public AudioClip soundJumpSpring;
+    public AudioClip soundJumpMonster;
+    public AudioClip soundJumpFakePlatform;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,6 +47,7 @@ public class Jump : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("FakePlatform"))
             {
+                audioSource.PlayOneShot(soundJumpFakePlatform);
                 collision.gameObject.GetComponent<Animator>().SetTrigger("PlatformBreak");
                 collision.gameObject.GetComponent<FakePlatformBreak>().SetBroken();  
                 return;
@@ -48,6 +55,7 @@ public class Jump : MonoBehaviour
             // Spring
             if (collision.gameObject.CompareTag("Spring"))
             {
+                audioSource.PlayOneShot(soundJumpSpring);
                 rb.velocity = Vector2.zero;
                 rb.AddForce(jump * jump_force * spring_force);
                 //Debug.Log("Spring");
@@ -56,22 +64,25 @@ public class Jump : MonoBehaviour
                     animator.SetTrigger("JumpCondition");
                     collision.gameObject.GetComponent<Animator>().SetTrigger("SpringBounce");
                 }
+                
                 return;
             }
             if (collision.gameObject.CompareTag("Monster"))
             {
+                audioSource.PlayOneShot(soundJumpMonster);
                 Destroy(collision.gameObject);
                 //Debug.Log("Monster");
             }
 
             // Normal jump behavior
-            //Debug.Log("Avant rebond");
+            audioSource.PlayOneShot(soundJumpSimple);
             rb.velocity = Vector2.zero;
             rb.AddForce(jump * jump_force);
             if (animator != null)
             {
                 animator.SetTrigger("JumpCondition");
             }
+            
             //Debug.Log("rebond");
 
         }
