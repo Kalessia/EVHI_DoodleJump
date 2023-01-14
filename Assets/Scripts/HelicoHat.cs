@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HelicoHat : MonoBehaviour
+public class HelicoHat : MonoBehaviour            // Perform the helicohat behavior     (make the player fly up)
 {
     public float height = 30;
     public float speed = 10;

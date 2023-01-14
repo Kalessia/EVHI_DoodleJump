@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 1;
+    public float speed = 1;                       // speed for lateral moves
     public SpriteRenderer spriteRenderer;
     public GameObject PlayerNose;
-    public int factor = 150;
     public Animator animator;
     public GameObject BallPrefab;
     public float shootForce;
@@ -18,17 +17,17 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {        
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow))                   // Go to right
         {
             transform.position += new Vector3(speed * Time.deltaTime, 0,0);
             spriteRenderer.flipX = false;
         }
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.LeftArrow))                    // Go to left
         {
             transform.position += new Vector3(-speed * Time.deltaTime, 0, 0);
             spriteRenderer.flipX = true;
         }
-        if (Input.GetKeyDown(KeyCode.UpArrow) && (haveBonus == false))
+        if (Input.GetKeyDown(KeyCode.UpArrow) && (haveBonus == false))         // Shoot
         {
             audioSource.PlayOneShot(soundFire);
             animator.SetTrigger("PlayerShot");

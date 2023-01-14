@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FakePlatformBreak : MonoBehaviour
+public class FakePlatformBreak : MonoBehaviour                 // Make the plateform fall after it get broken by the player
 {
     private bool broken;
     public float speed = 10;
@@ -22,7 +22,7 @@ public class FakePlatformBreak : MonoBehaviour
         }
     }
 
-    public void SetBroken()
+    public void SetBroken()                   // Called in the Jump script
     {
         broken = true;
     }

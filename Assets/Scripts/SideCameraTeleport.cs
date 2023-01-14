@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class SideCameraTeleport : MonoBehaviour
+public class SideCameraTeleport : MonoBehaviour              // Teleport the player to the other side of the screen (horrizontally) if he get out of it
 {
 
     public Camera cam;
@@ -8,7 +8,7 @@ public class SideCameraTeleport : MonoBehaviour
 
     void Start()
     {
-        cam_width = cam.orthographicSize * cam.aspect;
+        cam_width = cam.orthographicSize * cam.aspect;                       // Set up the width of the screen
     }
 
     void Update()

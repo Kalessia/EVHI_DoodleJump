@@ -19,10 +19,9 @@ public class BlackHoleAspiration : MonoBehaviour
             GameObject player = collision.GetComponent<FollowPlayer>().Player;
             Destroy(player.gameObject, 0.5f);
             Destroy(collision.gameObject);
-            //Debug.Log("BlackHole");
             GameObject gm = GameObject.FindGameObjectWithTag("GameManager");
             ManagerGame mg = gm.GetComponent<ManagerGame>();
-            mg.SetLose();
+            mg.SetLose();                                                     // Trigger the loose behavior in the ManagerGame script
         }
     } 
 }

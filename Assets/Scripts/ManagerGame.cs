@@ -18,6 +18,7 @@ public class ManagerGame: MonoBehaviour
     public GameObject endButtonMenu;
     public GameObject endButtonPlay;
 
+    // Prefabs used to generate the level (and associated values)
     public GameObject greenplatPrefab;
     public GameObject blueplatPrefab;
     public float maxSpeedBluePlatform = 1;
@@ -34,6 +35,7 @@ public class ManagerGame: MonoBehaviour
     private float maxBoundaries = 5;
     private float minBoundaries = 8;
 
+    // Variables and gameobjects used to count, register et display the score
     private int score;
     public TextMeshProUGUI textScore;
     public int scoreFactor;
@@ -43,6 +45,7 @@ public class ManagerGame: MonoBehaviour
     public GameObject textScoreEndObj;
     public TextMeshProUGUI textScoreEnd;
 
+    // Audio
     public GameObject audioManager;
     public AudioSource audioSource;
     public AudioClip soundEndGame;
@@ -50,16 +53,15 @@ public class ManagerGame: MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (cam != null)
-        {
-            //cam.pixelRect = new Rect(0, 0, 640, 1024);    
+        if (cam != null)                                        // setup of the camera
+        {  
             cam.transform.position = new Vector3(0, 0, 0);
             cam_width = cam.orthographicSize * cam.aspect;
             maxBoundaries = cam.orthographicSize * 2 + 1.5f;
             minBoundaries = cam.orthographicSize * 2 - 1.5f;
         }
         loose = false;
-        if (endButtonMenu != null)
+        if (endButtonMenu != null)                             // setup of the buton of the game over screen
         {
             endButtonMenu.SetActive(false);
         }
@@ -68,7 +70,7 @@ public class ManagerGame: MonoBehaviour
             endButtonPlay.SetActive(false);
         }
         difficulty = 0;
-        if (player != null)
+        if (player != null)                                           // setup of the player
         {
             player.transform.position = new Vector3(0, 0, 1);
             Rigidbody2D rb = player.GetComponent<Rigidbody2D>();
@@ -76,13 +78,13 @@ public class ManagerGame: MonoBehaviour
         }
         
 
-        if (greenplatPrefab != null)
+        if (greenplatPrefab != null)                                   // setup of the first platform in order to generate the level
         {
             lastPlatform = Instantiate(greenplatPrefab, new Vector3(0, -10, 2), Quaternion.identity);
         }
 
         score = 0;
-        if(textBestScoreObj != null)
+        if(textBestScoreObj != null)                             // setup of the score display for the game over screen
         {
             textBestScoreObj.SetActive(false);
         }
@@ -113,18 +115,19 @@ public class ManagerGame: MonoBehaviour
         {
             if (player  != null)
             {
-                PlatformCreator(); // Create new platforms randomly
+                PlatformCreator(); // Create new platforms randomly (and obstacles)
             }
         }
     }
 
 
 
-    void PlatformCreator()
+    void PlatformCreator()                             // Create the platforms, the obstacles, and the bonus objects
     {
-        if((lastPlatform.transform.position.y < player.transform.position.y + minBoundaries))
+        if((lastPlatform.transform.position.y < player.transform.position.y + minBoundaries))                        // Detect if it necessary to create new platform (distance betwin the last platform created and the maximum heigt the player can jump)
         {
-            int nbNew = 1;
+                                                                   // PLATFORM GENERATION
+            int nbNew = 1;                                                           // Number of new platforms created
             float newVar = Random.Range(difficulty, 1.0f);
             if(newVar < 0.7f)
             {
@@ -136,21 +139,22 @@ public class ManagerGame: MonoBehaviour
             }
             for (int i = 0; i < nbNew; i++) {
 
-                GameObject platformColor = greenplatPrefab;
+                GameObject platformColor = greenplatPrefab;                                      // create green platform by default
                 float speedBlue = -1.0f;
-                if((blueplatPrefab != null) && (Random.Range(difficulty, 1.0f) > 0.93f))
+                if((blueplatPrefab != null) && (Random.Range(difficulty, 1.0f) > 0.93f))                // create a blue (moving) platform instead of the green (basic) one
                 {
                     platformColor = blueplatPrefab;
                     speedBlue = Random.Range(minSpeedBluePlatform, maxSpeedBluePlatform - (maxSpeedBluePlatform - minSpeedBluePlatform -1) * (1 - difficulty));
                 }
-                //GameObject lastemp = lastPlatform;
-                lastPlatform = Instantiate(platformColor, new Vector3(Random.Range(-1.0f, 1.0f) * (cam_width - 0.6f), player.transform.position.y + Random.Range(minBoundaries + 3 * difficulty, maxBoundaries), 10), Quaternion.identity);
+                lastPlatform = Instantiate(platformColor, new Vector3(Random.Range(-1.0f, 1.0f) * (cam_width - 0.6f), player.transform.position.y + Random.Range(minBoundaries + 3 * difficulty, maxBoundaries), 10), Quaternion.identity);       // Create the new platform
                 if(speedBlue > -1.0f)
                 {
-                    PlatformMove pm = lastPlatform.GetComponent<PlatformMove>();
+                    PlatformMove pm = lastPlatform.GetComponent<PlatformMove>();                     // Initialisation of the caracteristics of the new blue platform (if the new platform is a blue one)
                     pm.speed = speedBlue;
                     pm.cam = cam;
                 }
+
+                                                                         // BONUS GENERATION
                 bool bonusPossible = true;
                 if ((springPrefab != null) && bonusPossible) {
                     if (Random.Range(0.0f, 1.0f) <= 0.1f)
@@ -182,9 +186,11 @@ public class ManagerGame: MonoBehaviour
                     }
                 }
 
+
+                                                                      //  OBSTACLES GENERATION
                 if (Random.Range(difficulty * 0.5f, 1.0f) > 0.90f)
                 {
-                    float seuilFakePlat = 0.9f;
+                    float seuilFakePlat = 0.9f;                               // probability for each type of obstacle to appear
                     float seuilEnemy = 0.4f;
                     float seuilBlackHole = 0.3f;
                     float tirage = Random.Range(0.0f, seuilFakePlat + seuilEnemy + seuilBlackHole);
@@ -221,7 +227,7 @@ public class ManagerGame: MonoBehaviour
 
 
 
-    void updateDifficulty()
+    void updateDifficulty()                         // Update the difficuly of the game
     {
         if(player.transform.position.y < 900)
         {
@@ -229,7 +235,7 @@ public class ManagerGame: MonoBehaviour
         }
     }
 
-    void updateScore()
+    void updateScore()                                                 // Upadate the score displayed on the screen
     {
         if (player.transform.position.y * scoreFactor > score)
         {
@@ -238,17 +244,17 @@ public class ManagerGame: MonoBehaviour
         }
     }
 
-    public void LoadScore()
+    public void LoadScore()                                          // Load the best score of the player
     {
         bestScore = PlayerPrefs.GetInt("bestScore", 0);
     }
 
-    public void SaveScore()
+    public void SaveScore()                                      // Save the best score of the player
     {
         PlayerPrefs.SetInt("bestScore", bestScore);
     }
 
-    void FallLose()
+    void FallLose()                                                      // Detect if the player fell (under the bottom of the screen)
     {
         if (cam.transform.position.y - cam.orthographicSize - offset > player.transform.position.y)
         {
@@ -258,7 +264,7 @@ public class ManagerGame: MonoBehaviour
 
 
 
-    public void SetLose()
+    public void SetLose()                                 // Trigger the loose procedure (adn create the game over screen)
     {
         if (loose == false)
         {
@@ -270,17 +276,17 @@ public class ManagerGame: MonoBehaviour
 
 
 
-    void endGame()
+    void endGame()                        // The loose procedure : make the camera go down to the game overs creen and activate the elements of the game over screen
     {
         audioManager.GetComponent<AudioSource>().enabled = false;
 
-        if (cam.transform.position.y - targetEnd.y > 0.01)
+        if (cam.transform.position.y - targetEnd.y > 0.01)                     // Make the camera go down to the game over screen
         {
             cam.transform.position = Vector3.MoveTowards(cam.transform.position, targetEnd, speedEnd * Time.deltaTime);
         }
-        else
+        else                                                          // Display the elements of th game over screen
         {
-            if (score > bestScore)
+            if (score > bestScore)                     // Save the new best score
             {
                 bestScore = score;
                 SaveScore();
@@ -306,7 +312,7 @@ public class ManagerGame: MonoBehaviour
 
 
 
-    void LevelCleaner()
+    void LevelCleaner()                                               // Destroy all the elements that is under the bottom of the camera
     {
         var platforms = GameObject.FindGameObjectsWithTag("Platform");
         foreach (GameObject i in platforms)
@@ -383,12 +389,12 @@ public class ManagerGame: MonoBehaviour
 
 
 
-    public void restart()
+    public void restart()                               // Launch a new game (from the game over screen)
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void backToMenu()
+    public void backToMenu()                        // Go back to menu (from the game over screen)
     {
         SceneManager.LoadScene("EntryScene");
         SceneManager.UnloadSceneAsync("PlayScene");

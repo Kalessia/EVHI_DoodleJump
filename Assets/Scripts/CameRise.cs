@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class CameRise : MonoBehaviour
+public class CameRise : MonoBehaviour           // Make the camera folow a game object on the y axis (only going up)
 {
 
-    public GameObject target;
+    public GameObject target;                // The target to follow
     public float offset = 0;
 
     // Update is called once per frame

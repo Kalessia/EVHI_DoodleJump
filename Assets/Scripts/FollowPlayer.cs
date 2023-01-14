@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FollowPlayer : MonoBehaviour
+public class FollowPlayer : MonoBehaviour               // Make a game object follow the player on Y and X axis (used in order to provied a second collider to the player)
 {
     public GameObject Player;
 

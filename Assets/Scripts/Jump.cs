@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Jump : MonoBehaviour
+public class Jump : MonoBehaviour                 // Script for autamatic behaviors on the player
 {
     public float jump_force;
     public float spring_force;
@@ -24,26 +24,14 @@ public class Jump : MonoBehaviour
 
 
 
-    private void FixedUpdate() // Pour faire des tests
-    {
-        if (Input.GetKeyDown("space"))
-        {
-            rb.velocity = Vector2.zero;
-            rb.AddForce(jump);
-            //Debug.Log("saut");
-        }
-    }
-
-
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         
 
-        if ((rb.velocity.y < 0) && (!(collision.gameObject.CompareTag("BlackHole")))
+        if ((rb.velocity.y < 0) && (!(collision.gameObject.CompareTag("BlackHole")))        // Only when th player is going down after a jump
             && (collision.gameObject.CompareTag("PlayerSecondCollider") == false))
         {
-
+            // Fake plateform
             if (collision.gameObject.CompareTag("FakePlatform"))
             {
                 audioSource.PlayOneShot(soundJumpFakePlatform);
@@ -57,7 +45,6 @@ public class Jump : MonoBehaviour
                 audioSource.PlayOneShot(soundJumpSpring);
                 rb.velocity = Vector2.zero;
                 rb.AddForce(jump * jump_force * spring_force);
-                //Debug.Log("Spring");
                 if (animator != null)
                 {
                     animator.SetTrigger("JumpCondition");
@@ -66,11 +53,11 @@ public class Jump : MonoBehaviour
                 
                 return;
             }
+            // Monster
             if (collision.gameObject.CompareTag("Monster"))
             {
                 audioSource.PlayOneShot(soundJumpMonster);
                 Destroy(collision.gameObject);
-                //Debug.Log("Monster");
             }
 
             // Normal jump behavior
@@ -81,8 +68,6 @@ public class Jump : MonoBehaviour
             {
                 animator.SetTrigger("JumpCondition");
             }
-            
-            //Debug.Log("rebond");
 
         }
     }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class JetPack : MonoBehaviour
+public class JetPack : MonoBehaviour              // Perform the jetpack behavior     (make the player fly up)
 {
     public float height = 30;
     public float speed = 10;
