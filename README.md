@@ -3,7 +3,7 @@ Remake sur PC du célèbre jeu Doodle Jump.
 
 Il s'agit d'un petit projet que nos enseignants nous ont demandé de réaliser sur notre temps libre pour s'habituer à utiliser Unity.
 
-Notre travail a donc consisté à réimplémenter le gameplay, le level design ainsi que les menus et interfaces du jeu original en suivant les consignes inscrites dans le fichier "DoodleJumpProject.pdf" (les sprites et les bruitages étaient fournis).
+Notre travail a donc consisté à réimplémenter le gameplay, le level design ainsi que les menus et interfaces du jeu original en suivant les consignes inscrites dans le fichier ["DoodleJumpProject.pdf"](https://github.com/Kalessia/EVHI_DoodleJump/blob/main/DoodleJumpProject.pdf) (les sprites et les bruitages étaient fournis).
 
 ----------------------------------
 
