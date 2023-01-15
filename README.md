@@ -11,7 +11,7 @@ Notre travail a donc consisté à réimplémenter le gameplay, le level design a
 
 Le dossier [EVHI_DoodleJump_Rendu](https://github.com/Kalessia/EVHI_DoodleJump/tree/main/EVHI_DoodleJump_Rendu/EVHI_DoodleJump_Rendu) comporte une build du jeu jouable (il ne comporte rien d'autre que cette build).
 
-Le reste des fichiers concerne le projet Unity sur lequel nous avons travaillé pour réaliser cette version de Doodle Jump sur PC.
+Le reste des fichiers concerne le projet Unity sur lequel nous avons travaillé pour réaliser cette version de Doodle Jump sur PC (version de Unity utilisée : 2020.3.19f1)
 
 ---
 
