@@ -11,4 +11,4 @@ Le dossier "EVHI_DoodleJump_Rendu" comporte une build du jeu jouable (il ne comp
 
 Le reste des fichiers concerne le projet Unity sur lequel nous avons travaillé pour réaliser cette version de Doodle Jump sur PC.
 
-Voici un lien vers une petite vidéo montrant le jeu lancé à partir de la build fournie dans le dossier "DoodleJumpProject.pdf" :
+Voici un lien vers une petite vidéo montrant le jeu lancé à partir de la build fournie dans le dossier "DoodleJumpProject.pdf" : https://youtu.be/9pWxdA6FDIM
